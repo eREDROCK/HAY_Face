@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend/Python/.
+    volumes:
+      - ./backend/Python:/backend/Python
+    command: python3 /backend/Python/manage.py runserver 0.0.0.0:8000
+    container_name: pythonback
+    ports:
+      - "8000:8000"
+    tty: true
+  
+  socketbackend:
+    build: ./backend/Go/.
+    container_name: goback
+    stdin_open: true
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      -  ./backend/Go:/go/app
+  
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/React:/usr/src/app/frontend
+    command: sh -c "cd /usr/src/app/frontend && yarn start"
+    container_name: reactfront
+    ports:
+      - "3000:3000"
