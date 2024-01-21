@@ -1,6 +1,6 @@
 // import Webcam from "react-webcam";
 import React, { useEffect, useState } from 'react';
-import WebCamera from "./WebCamera"
+import WebCamera from "./component/WebCamera"
 
 // import Dropdown from "./components/Dropdown";
 
